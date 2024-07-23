@@ -1,0 +1,14 @@
+age_intervals <- c("1-5", "5-15", "15-20", "20-50", "50-80", "80-110")
+frequencies <- c(200, 450, 300, 1500, 700, 44)
+cum_frequencies <- cumsum(frequencies)
+N <- sum(frequencies)
+N2 <- N / 2
+median_class_index <- which(cum_frequencies >= N2)[1]
+L <- as.numeric(unlist(strsplit(age_intervals[median_class_index], "-")))[1]
+CF <- ifelse(median_class_index == 1, 0, cum_frequencies[median_class_index - 1])
+f <- frequencies[median_class_index]                                                  
+class_widths <- diff(as.numeric(unlist(strsplit(paste(age_intervals, collapse = "-"), "-"))))
+w <- mean(class_widths)
+median <- L + ((N2 - CF) / f) * w
+print(median)
+
