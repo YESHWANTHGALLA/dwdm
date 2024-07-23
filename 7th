@@ -1,0 +1,22 @@
+pencils <- c(9, 25, 23, 12, 11, 6, 7, 8, 9, 10)
+
+# Calculate mean
+mean_pencils <- mean(pencils)
+
+# Calculate median
+median_pencils <- median(pencils)
+
+# Calculate mode
+# Mode function
+get_mode <- function(x) {
+  uniq_x <- unique(x)
+  uniq_x[which.max(tabulate(match(x, uniq_x)))]
+}
+
+mode_pencils <- get_mode(pencils)
+
+# Output the results
+cat("Mean number of pencils:", mean_pencils, "\n")
+cat("Median number of pencils:", median_pencils, "\n")
+cat("Mode number of pencils:", mode_pencils, "\n")
+
