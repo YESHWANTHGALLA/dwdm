@@ -1,0 +1,16 @@
+marks <- c(55, 60, 71, 63, 55, 65, 50, 55, 58, 59, 61, 63, 65, 67, 71, 72, 75)
+sorted_marks <- sort(marks)
+num_bins <- 3
+num_data_points <- length(sorted_marks)
+bin_size <- ceiling(num_data_points / num_bins)
+bin_edges <- c(sorted_marks[seq(1, num_data_points, bin_size)], sorted_marks[num_data_points])
+hist(sorted_marks, 
+     breaks = bin_edges, 
+     main = "Histogram of Marks with Equal-Frequency Partitioning",
+     xlab = "Marks",
+     ylab = "Frequency",
+     col = "lightblue",
+     border = "black")
+cat("Bin edges for equal-frequency partitioning:\n")
+print(bin_edges)
+
