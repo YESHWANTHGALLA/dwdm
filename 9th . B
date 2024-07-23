@@ -1,0 +1,29 @@
+marks <- c(55, 60, 71, 63, 55, 65, 50, 55, 58, 59, 61, 63, 65, 67, 71, 72, 75)
+
+# Sort the data
+sorted_marks <- sort(marks)
+
+# Number of bins
+num_bins <- 3
+
+# Determine the range of the data
+range_min <- min(sorted_marks)
+range_max <- max(sorted_marks)
+bin_width <- (range_max - range_min) / num_bins
+
+# Create bin edges for equal-width partitioning
+bin_edges <- seq(range_min, range_max, by = bin_width)
+bin_edges <- c(bin_edges, range_max)  # Ensure the last edge is included
+
+# Create the histogram with the calculated bins
+hist(sorted_marks, 
+     breaks = bin_edges, 
+     main = "Histogram of Marks with Equal-Width Partitioning",
+     xlab = "Marks",
+     ylab = "Frequency",
+     col = "lightblue",
+     border = "black")
+
+# Output bin edges for reference
+cat("Bin edges for equal-width partitioning:\n")
+print(bin_edges)
