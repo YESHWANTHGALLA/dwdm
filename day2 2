@@ -1,0 +1,19 @@
+prices <- c(1, 1, 5, 5, 5, 5, 5, 8, 8, 10, 10, 10, 10, 12, 14, 14, 14, 15, 15, 15, 15, 15, 15, 18, 18, 18, 18, 18, 18, 18, 18, 20, 20, 20, 20, 20, 20, 20, 21, 21, 21, 21, 25, 25, 25, 25, 25, 28, 28, 30, 30, 30)
+n_bins <- 3
+bins <- cut(prices, breaks = quantile(prices, probs = seq(0, 1, length.out = n_bins + 1)), include.lowest = TRUE, labels = FALSE)
+print("Bin assignments:")
+print(bins)
+bin_means <- tapply(prices, bins, mean)
+bin_boundaries <- quantile(prices, probs = seq(0, 1, length.out = n_bins + 1))
+print("Bin means:")
+print(bin_means)
+print("Bin boundaries:")
+print(bin_boundaries)
+bins_factor <- factor(bins, levels = 1:n_bins, labels = paste("Bin", 1:n_bins))
+ggplot(data = data.frame(prices, bins_factor), aes(x = prices, fill = bins_factor)) +
+  geom_histogram(bins = 30, color = "black", alpha = 0.7) +
+  labs(title = "Histogram of Prices with Equal-Frequency Binning",
+       x = "Price",
+       y = "Frequency",
+       fill = "Bin") +
+  theme_minimal()
